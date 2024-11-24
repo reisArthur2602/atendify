@@ -3,8 +3,14 @@ import { useForm } from "react-hook-form";
 import { SignInSchema } from "../schemas/Sign";
 import { UserSignInRequest } from "../types/User";
 import { UserServices } from "../services/User";
+import { useAuth } from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 export const useSignIn = () => {
+  
+  const { updateUser } = useAuth();
+  const redirect = useNavigate();
+
   const {
     handleSubmit,
     control,
@@ -17,9 +23,11 @@ export const useSignIn = () => {
     },
   });
 
-  const onSubmit = handleSubmit(
-    async (data) => await UserServices.SignIn(data)
-  );
+  const onSubmit = handleSubmit(async (data) => {
+    const result = await UserServices.SignIn(data);
+    updateUser(result!.user);
+    redirect(0);
+  });
 
   return { onSubmit, control, errors, isSubmitting };
 };

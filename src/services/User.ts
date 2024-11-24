@@ -10,17 +10,12 @@ const SignIn = async (data: UserSignInRequest) => {
       userEndpoint + "/session",
       data
     );
-
     const { token, user } = response.data;
-
-    // salva token no local storage
     tokenUtils.save(token);
-
     console.log(`Olá ${user.username}, seja bem-vindo!`);
-    
+    return { user };
   } catch (error) {
-    const message = error as string;
-    console.error(message);
+    console.error(error as string);
   }
 };
 
