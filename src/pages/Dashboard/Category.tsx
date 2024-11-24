@@ -1,9 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { FormDialogCategory } from "../../components/Dashboard/Category/FormDialogCategory";
 import { UseCategory } from "../../hooks/Dashboard/useCategory";
+import { DataTableCategory } from "../../components/Dashboard/Category/DataTableCategory";
 
 const Category = () => {
-  const form = UseCategory();
+  const {
+    categories,
+    control,
+    errors,
+    handleDeleteCategory,
+    isSubmitting,
+    onSubmit,
+  } = UseCategory();
+
   return (
     <Box padding={4}>
       <Box display={"flex"} justifyContent={"space-between"} marginBottom={6}>
@@ -16,9 +25,17 @@ const Category = () => {
           </Typography>
         </Box>
 
-        <FormDialogCategory {...form} />
+        <FormDialogCategory
+          control={control}
+          errors={errors}
+          isSubmitting={isSubmitting}
+          onSubmit={onSubmit}
+        />
       </Box>
-      ...
+      <DataTableCategory
+        categories={categories}
+        onDelete={handleDeleteCategory}
+      />
     </Box>
   );
 };

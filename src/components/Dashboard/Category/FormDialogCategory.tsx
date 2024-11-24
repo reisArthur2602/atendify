@@ -11,7 +11,10 @@ import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { UseCategory } from "../../../hooks/Dashboard/useCategory";
 
-type FormDialogCategoryProps = ReturnType<typeof UseCategory>;
+type FormDialogCategoryProps = Omit<
+  ReturnType<typeof UseCategory>,
+  "handleDeleteCategory" | "categories"
+>;
 
 export const FormDialogCategory = ({
   control,
