@@ -168,8 +168,7 @@ export const DashboardLayout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          bgcolor: "background.default",
-          p: 3,
+          marginLeft: { sm: `${drawerWidth}px`, xs: 0 },
           minHeight: "100vh",
         }}
       >
