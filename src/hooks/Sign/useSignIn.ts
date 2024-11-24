@@ -7,7 +7,6 @@ import { useAuth } from "../useAuth";
 import { useNavigate } from "react-router-dom";
 
 export const useSignIn = () => {
-  
   const { updateUser } = useAuth();
   const redirect = useNavigate();
 
@@ -23,11 +22,19 @@ export const useSignIn = () => {
     },
   });
 
-  const onSubmit = handleSubmit(async (data) => {
-    const result = await UserServices.SignIn(data);
-    updateUser(result!.user);
-    redirect(0);
-  });
+  const onSubmit = handleSubmit(
+    async (data) =>
+      await UserServices.SignIn(data)
+        .then((result) => {
+          updateUser(result!.user);
+          redirect(0);
+        })
+        .catch(() =>
+          console.error(
+            "Não foi possível criar a conta, verifique os dados e tente novamente"
+          )
+        )
+  );
 
   return { onSubmit, control, errors, isSubmitting };
 };

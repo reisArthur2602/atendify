@@ -40,11 +40,12 @@ export const FormSignUp = ({
           control={control}
           render={({ field }) => (
             <TextField
-              placeholder="Digite o seu nome"
               {...field}
+              placeholder="Digite o seu nome"
               label="Nome"
               error={!!errors.username}
               helperText={errors.username?.message}
+              disabled={isSubmitting}
               fullWidth
             />
           )}
@@ -59,6 +60,7 @@ export const FormSignUp = ({
               label="Email"
               error={!!errors.email}
               helperText={errors.email?.message}
+              disabled={isSubmitting}
               fullWidth
             />
           )}
@@ -74,8 +76,8 @@ export const FormSignUp = ({
               error={!!errors.password}
               helperText={errors.password?.message}
               fullWidth
-              type="password"
               disabled={isSubmitting}
+              type="password"
             />
           )}
         />
