@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignInSchema } from "../schemas/Sign";
 import { UserSignInRequest } from "../types/User";
+import { UserServices } from "../services/User";
 
 export const useSignIn = () => {
   const {
@@ -16,9 +17,9 @@ export const useSignIn = () => {
     },
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log("Dados do formulário:", data);
-  });
+  const onSubmit = handleSubmit(
+    async (data) => await UserServices.SignIn(data)
+  );
 
-  return { onSubmit, control, errors, isSubmitting  };
+  return { onSubmit, control, errors, isSubmitting };
 };
