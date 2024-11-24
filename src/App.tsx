@@ -1,5 +1,12 @@
+import { Button } from "@mui/material";
+
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <Button>Home</Button>
+    </div>
+  );
 };
 
 export default App;
