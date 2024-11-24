@@ -1,7 +1,14 @@
-const Login = () => {
-  return (
-    <div>Login</div>
-  )
-}
+import { FormSignIn } from "../../components/Sign/FormSignIn";
+import { useSignIn } from "../../hooks/useSignIn";
 
-export default Login
+const Login = () => {
+  const form = useSignIn();
+
+  return (
+    <>
+      <FormSignIn {...form} />
+    </>
+  );
+};
+
+export default Login;
