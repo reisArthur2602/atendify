@@ -15,13 +15,10 @@ const SignIn = async (data: UserSignInRequest) => {
   );
   const { token, user } = response.data;
   tokenUtils.save(token);
-  console.log(`Olá ${user.username}, seja bem-vindo!`);
   return { user };
 };
-const SignUp = async (data: UserSignUpRequest) => {
+const SignUp = async (data: UserSignUpRequest) =>
   await api.post(userEndpoint + "/register", data);
-  console.log(`A conta foi criada com sucesso, faça login!`);
-};
 
 export const UserServices = {
   SignIn,

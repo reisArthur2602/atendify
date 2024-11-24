@@ -22,7 +22,6 @@ export const FormDialogCategory = ({
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   return (
     <>
       <Button

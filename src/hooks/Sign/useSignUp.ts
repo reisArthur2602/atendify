@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { UserServices } from "../../services/User";
 
 export const useSignUp = () => {
-  const redirect = useNavigate();
+  const refresh = useNavigate();
 
   const {
     handleSubmit,
@@ -25,7 +25,10 @@ export const useSignUp = () => {
   const onSubmit = handleSubmit(
     async (data) =>
       await UserServices.SignUp(data)
-        .then(() => redirect("/sign/in"))
+        .then(() => {
+          console.log(`A conta foi criada com sucesso, faça login!`);
+          refresh("/sign/in");
+        })
         .catch(() => console.error("Acesso Negado"))
   );
 
