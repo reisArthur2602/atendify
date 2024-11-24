@@ -1,7 +1,13 @@
-const Register = () => {
-  return (
-    <div>Register</div>
-  )
-}
+import { FormSignUp } from "../../components/Sign/FormSignUp";
+import { useSignUp } from "../../hooks/Sign/useSignUp";
 
-export default Register
+const Register = () => {
+  const form = useSignUp();
+  return (
+    <>
+      <FormSignUp {...form} />
+    </>
+  );
+};
+
+export default Register;

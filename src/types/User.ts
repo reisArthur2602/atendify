@@ -14,3 +14,9 @@ export type UserSignInResponse = {
   user: User;
   token: string;
 };
+
+export type UserSignUpRequest = {
+  username: string;
+  email: string;
+  password: string;
+};

@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { SignInSchema } from "../schemas/Sign";
-import { UserSignInRequest } from "../types/User";
-import { UserServices } from "../services/User";
-import { useAuth } from "./useAuth";
+import { SignInSchema } from "../../schemas/Sign";
+import { UserSignInRequest } from "../../types/User";
+import { UserServices } from "../../services/User";
+import { useAuth } from "../useAuth";
 import { useNavigate } from "react-router-dom";
 
 export const useSignIn = () => {

@@ -1,15 +1,15 @@
 import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { useSignIn } from "../../hooks/Sign/useSignIn";
+import { useSignUp } from "../../hooks/Sign/useSignUp";
 
-type FormSignInProps = ReturnType<typeof useSignIn>;
+type FormSignUpProps = ReturnType<typeof useSignUp>;
 
-export const FormSignIn = ({
+export const FormSignUp = ({
   control,
   errors,
   onSubmit,
   isSubmitting,
-}: FormSignInProps) => {
+}: FormSignUpProps) => {
   return (
     <Box
       component={"div"}
@@ -21,10 +21,10 @@ export const FormSignIn = ({
     >
       <Box component={"div"} display={"flex"} flexDirection={"column"}>
         <Typography component={"h2"} variant="h2">
-          Entrar
+          Cadastrar
         </Typography>
         <Typography component={"p"} variant="body1">
-          Preencha o formulário para entrar na sua conta
+          Preencha o formulário para criar sua conta
         </Typography>
       </Box>
 
@@ -36,12 +36,26 @@ export const FormSignIn = ({
         onSubmit={onSubmit}
       >
         <Controller
+          name="username"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              placeholder="Digite o seu nome"
+              {...field}
+              label="Nome"
+              error={!!errors.username}
+              helperText={errors.username?.message}
+              fullWidth
+            />
+          )}
+        />
+        <Controller
           name="email"
           control={control}
           render={({ field }) => (
             <TextField
               {...field}
-              placeholder="Digite seu email"
+              placeholder="Digite o seu email"
               label="Email"
               error={!!errors.email}
               helperText={errors.email?.message}
@@ -84,10 +98,10 @@ export const FormSignIn = ({
         justifyContent={"center"}
       >
         <Typography component={"p"} variant="body2">
-          Ainda não possui uma conta?
+          Já possui uma conta?
         </Typography>
-        <Link href="/sign/up" variant="body2">
-          Criar uma conta
+        <Link href="/sign/in" variant="body2">
+          Faça login
         </Link>
       </Box>
     </Box>

@@ -19,7 +19,7 @@ const SignUpSchema = z.object({
     .min(1, { message: "O email é obrigatório" })
     .email({ message: "Email inválido" }),
   username: z
-    .string()
+    .string({required_error:'O nome é obrigatório'})
     .trim()
     .min(2, { message: "Deve conter no mínimo 2 caracteres" }),
   password: z

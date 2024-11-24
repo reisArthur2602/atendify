@@ -1,5 +1,5 @@
 import { FormSignIn } from "../../components/Sign/FormSignIn";
-import { useSignIn } from "../../hooks/useSignIn";
+import { useSignIn } from "../../hooks/Sign/useSignIn";
 
 const Login = () => {
   const form = useSignIn();
