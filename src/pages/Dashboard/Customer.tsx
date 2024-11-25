@@ -1,14 +1,20 @@
 import { Box, Typography } from "@mui/material";
 import { FormDialogCustomer } from "../../components/Dashboard/Customer/FormDialogCustomer";
 import { UseCustomer } from "../../hooks/Dashboard/useCustomer";
+import { DataTableCustomer } from "../../components/Dashboard/Customer/DataTableCustomer";
 
 const Customer = () => {
-  const form = UseCustomer();
+  const {
+    control,
+    errors,
+    isSubmitting,
+    onSubmit,
+    handleDeleteCustomer,
+    customers,
+  } = UseCustomer();
   return (
     <Box padding={4}>
-
       <Box display={"flex"} justifyContent={"space-between"} marginBottom={6}>
-
         <Box>
           <Typography component={"h1"} variant="h4">
             Meus Clientes
@@ -18,10 +24,17 @@ const Customer = () => {
           </Typography>
         </Box>
 
-        <FormDialogCustomer {...form} />
-        
+        <FormDialogCustomer
+          control={control}
+          errors={errors}
+          isSubmitting={isSubmitting}
+          onSubmit={onSubmit}
+        />
       </Box>
-      DataTableCustomer
+      <DataTableCustomer
+        customers={customers}
+        onDelete={handleDeleteCustomer}
+      />
     </Box>
   );
 };

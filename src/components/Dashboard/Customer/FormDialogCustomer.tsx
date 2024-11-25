@@ -14,7 +14,10 @@ import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { UseCustomer } from "../../../hooks/Dashboard/useCustomer";
 
-type FormDialogCustomerProps = ReturnType<typeof UseCustomer>;
+type FormDialogCustomerProps = Omit<
+  ReturnType<typeof UseCustomer>,
+  "handleDeleteCustomer" | "customers"
+>;
 
 export const FormDialogCustomer = ({
   control,
