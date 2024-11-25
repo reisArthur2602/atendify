@@ -7,10 +7,10 @@ import { CategoryServices } from "../../services/Category";
 
 import { CustomerServices } from "../../services/Customer";
 import { Customer } from "../../types/Customer";
-
+import { DataTableOrder } from "../../components/Dashboard/Order/DataTableOrder";
 
 const Order = () => {
-  const { ...form } = UseOrder();
+  const { orders, handleDeleteOrder, ...form } = UseOrder();
 
   const [categories, setCategories] = useState<Category[] | []>([]);
   const [customers, setCustomers] = useState<Customer[] | []>([]);
@@ -47,8 +47,7 @@ const Order = () => {
           customers={customers}
         />
       </Box>
-
-     
+      <DataTableOrder orders={orders} onDelete={handleDeleteOrder} />
     </Box>
   );
 };

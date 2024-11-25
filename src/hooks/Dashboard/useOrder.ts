@@ -2,14 +2,32 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
 
-import { OrderRequest } from "../../types/Order";
+import { Order, OrderRequest } from "../../types/Order";
 import { OrderSchema } from "../../schemas/Dashboard";
-
+import { useEffect, useState } from "react";
 import { OrderServices } from "../../services/Order";
 import { useNavigate } from "react-router-dom";
 
 export const UseOrder = () => {
   const refresh = useNavigate();
+
+  const [orders, setOrders] = useState<Order[] | []>([]);
+
+  const getOrders = async () => {
+    const result = await OrderServices.Get();
+    setOrders(result);
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
+  const handleDeleteOrder = async (id: string) =>
+    await OrderServices.Delete(id)
+      .then(() => refresh(0))
+      .catch(() =>
+        console.log("Erro ao deletar chamado, verifique o id e tente novamente")
+      );
 
   const {
     handleSubmit,
@@ -42,6 +60,8 @@ export const UseOrder = () => {
     control,
     errors,
     isSubmitting,
+    orders,
     onSubmit,
+    handleDeleteOrder,
   };
 };
