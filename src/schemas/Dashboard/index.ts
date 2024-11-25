@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const CategorySchema = z.object({
-  name: z.string().trim().min(2, { message: "O nome é obrigatório" }),
+  name: z.string().trim().min(1, { message: "O nome é obrigatório" }),
 });
 
 export const CustomerSchema = z.object({
@@ -22,4 +22,16 @@ export const CustomerSchema = z.object({
     .string()
     .trim()
     .length(11, { message: "Deve estar no formato xxx.xxx.xxx-xx" }),
+});
+
+export const OrderSchema = z.object({
+  category_id: z
+    .string()
+    .trim()
+    .min(1, { message: "A categoria é obrigatória" }),
+  clientId: z.string().trim().min(1, { message: "O cliente é obrigatório" }),
+  description: z
+    .string()
+    .trim()
+    .min(1, { message: "A descrição é obrigatória" }),
 });
