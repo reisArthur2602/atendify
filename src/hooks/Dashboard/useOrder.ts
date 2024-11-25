@@ -28,6 +28,14 @@ export const UseOrder = () => {
       .catch(() =>
         console.log("Erro ao deletar chamado, verifique o id e tente novamente")
       );
+  const handleFinishOrder = async (id: string) =>
+    await OrderServices.Finish(id)
+      .then(() => refresh(0))
+      .catch(() =>
+        console.log(
+          "Erro ao finalizar chamado, verifique o id e tente novamente"
+        )
+      );
 
   const {
     handleSubmit,
@@ -63,5 +71,6 @@ export const UseOrder = () => {
     orders,
     onSubmit,
     handleDeleteOrder,
+    handleFinishOrder,
   };
 };

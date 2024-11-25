@@ -12,7 +12,7 @@ const Delete = async (id: string) =>
   await api.delete(orderEndpoint + "?id=" + id);
 
 const Finish = async (id: string) =>
-  await api.patch(orderEndpoint + "?id=" + id);
+  await api.patch(orderEndpoint + "/finish?id=" + id);
 
 export const OrderServices = {
   Create,

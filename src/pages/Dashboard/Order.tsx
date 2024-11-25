@@ -10,7 +10,7 @@ import { Customer } from "../../types/Customer";
 import { DataTableOrder } from "../../components/Dashboard/Order/DataTableOrder";
 
 const Order = () => {
-  const { orders, handleDeleteOrder, ...form } = UseOrder();
+  const { orders, handleDeleteOrder, handleFinishOrder,...form } = UseOrder();
 
   const [categories, setCategories] = useState<Category[] | []>([]);
   const [customers, setCustomers] = useState<Customer[] | []>([]);
@@ -47,7 +47,7 @@ const Order = () => {
           customers={customers}
         />
       </Box>
-      <DataTableOrder orders={orders} onDelete={handleDeleteOrder} />
+      <DataTableOrder orders={orders} onDelete={handleDeleteOrder} onFinish={handleFinishOrder} />
     </Box>
   );
 };

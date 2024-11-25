@@ -15,12 +15,17 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { grey } from "@mui/material/colors";
 import { formatUtils } from "../../../utils/format";
 import { Order } from "../../../types/Order";
+import { FinishOrderDialog } from "./FinishOrderDialog";
 
 type DetailsOrderDialogProps = {
   order: Order;
+  onFinish: (id: string) => Promise<void>;
 };
 
-export const DetailsOrderDialog = ({ order }: DetailsOrderDialogProps) => {
+export const DetailsOrderDialog = ({
+  order,
+  onFinish,
+}: DetailsOrderDialogProps) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => setOpen(true);
@@ -151,7 +156,9 @@ export const DetailsOrderDialog = ({ order }: DetailsOrderDialogProps) => {
 
         <DialogActions>
           <Button onClick={handleClose}>Fechar</Button>
-          <Button variant="contained">Finalizar</Button>
+          {!order.status && (
+            <FinishOrderDialog onFinish={() => onFinish(order.id)} />
+          )}
         </DialogActions>
       </Dialog>
     </>

@@ -18,7 +18,7 @@ import { formatUtils } from "../../../utils/format";
 
 type FormDialogOrderProps = Omit<
   ReturnType<typeof UseOrder>,
-  "handleDeleteOrder" | "orders"
+  "handleDeleteOrder" | "orders" | "handleFinishOrder"
 > & {
   categories: Category[] | [];
   customers: Customer[] | [];

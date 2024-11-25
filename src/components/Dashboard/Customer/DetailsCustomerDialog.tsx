@@ -148,7 +148,7 @@ export const DetailsCustomerDialog = ({
               Cadastro:
             </Typography>
 
-            <Typography component={"p"} variant="body2" color={grey[900]}>
+            <Typography component={"p"} variant="body1" color={grey[900]}>
               {formatUtils.DateToDDMMYYYY(new Date(customer.created_at))}
             </Typography>
           </Box>

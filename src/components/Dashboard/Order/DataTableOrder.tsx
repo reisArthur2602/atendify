@@ -15,10 +15,14 @@ import { formatUtils } from "../../../utils/format";
 type DataTableOrderProps = {
   orders: Order[] | [];
   onDelete: (id: string) => Promise<void>;
+  onFinish: (id: string) => Promise<void>;
 };
 
-export const DataTableOrder = ({ onDelete, orders }: DataTableOrderProps) => {
-
+export const DataTableOrder = ({
+  onDelete,
+  onFinish,
+  orders,
+}: DataTableOrderProps) => {
   const hasOrders = orders.length > 0;
 
   return (
@@ -50,7 +54,10 @@ export const DataTableOrder = ({ onDelete, orders }: DataTableOrderProps) => {
               <TableCell>
                 <Box display={"flex"} gap={2}>
                   <DeleteOrderDialog onDelete={() => onDelete(order.id)} />
-                  <DetailsOrderDialog order={order} />
+                  <DetailsOrderDialog
+                    order={order}
+                    onFinish={onFinish}
+                  />
                 </Box>
               </TableCell>
             </TableRow>
