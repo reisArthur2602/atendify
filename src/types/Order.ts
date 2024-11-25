@@ -6,6 +6,9 @@ export type Order = {
   userId: string;
   description: string;
   category: Category;
+  created_at: string;
+  status: boolean;
+  user: { username: string };
 };
 
 export type OrderRequest = {

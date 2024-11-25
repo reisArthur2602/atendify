@@ -5,7 +5,12 @@ import { useForm } from "react-hook-form";
 import { OrderRequest } from "../../types/Order";
 import { OrderSchema } from "../../schemas/Dashboard";
 
+import { OrderServices } from "../../services/Order";
+import { useNavigate } from "react-router-dom";
+
 export const UseOrder = () => {
+  const refresh = useNavigate();
+
   const {
     handleSubmit,
     control,
@@ -19,14 +24,24 @@ export const UseOrder = () => {
     },
   });
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-  });
+  const onSubmit = handleSubmit(
+    async (data) =>
+      await OrderServices.Create(data)
+        .then(() => {
+          console.log("Chamado foi aberto com sucesso!");
+          refresh(0);
+        })
+        .catch(() =>
+          console.error(
+            "Não foi possível abrir o chamado, verifique os dados e tente novamente"
+          )
+        )
+  );
 
   return {
-    onSubmit,
     control,
     errors,
     isSubmitting,
+    onSubmit,
   };
 };

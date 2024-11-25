@@ -8,6 +8,7 @@ import { CategoryServices } from "../../services/Category";
 import { CustomerServices } from "../../services/Customer";
 import { Customer } from "../../types/Customer";
 
+
 const Order = () => {
   const { ...form } = UseOrder();
 
@@ -46,7 +47,8 @@ const Order = () => {
           customers={customers}
         />
       </Box>
-      DataTableOrder
+
+     
     </Box>
   );
 };
