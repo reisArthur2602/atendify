@@ -77,6 +77,24 @@ export const FormDialogCustomer = ({
             />
 
             <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  placeholder="Email do cliente"
+                  label="Email"
+                  error={!!errors.email}
+                  helperText={errors.email?.message}
+                  disabled={isSubmitting}
+                  variant="standard"
+                  margin="dense"
+                  fullWidth
+                  size="small"
+                />
+              )}
+            />
+            <Controller
               name="address"
               control={control}
               render={({ field }) => (
@@ -140,8 +158,9 @@ export const FormDialogCustomer = ({
           <Button onClick={handleClose} disabled={isSubmitting}>
             Cancelar
           </Button>
-
-          <Button type="submit">Adicionar</Button>
+          <Button type="submit" disabled={isSubmitting}>
+            Adicionar
+          </Button>
         </DialogActions>
       </Dialog>
     </>

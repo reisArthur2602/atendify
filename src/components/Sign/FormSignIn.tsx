@@ -46,6 +46,7 @@ export const FormSignIn = ({
               error={!!errors.email}
               helperText={errors.email?.message}
               fullWidth
+              disabled={isSubmitting}
             />
           )}
         />

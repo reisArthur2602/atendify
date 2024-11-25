@@ -74,7 +74,7 @@ export const FormDialogCategory = ({
           <Button onClick={handleClose} disabled={isSubmitting}>
             Cancelar
           </Button>
-          <Button type="submit">Adicionar</Button>
+          <Button type="submit" disabled={isSubmitting}>Adicionar</Button>
         </DialogActions>
       </Dialog>
     </>

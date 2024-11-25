@@ -35,7 +35,7 @@ export const UseCategory = () => {
     async (data) =>
       await CategoryServices.Create(data)
         .then(() => {
-          console.log("A categoria foi cadastrada com sucesso"!);
+          console.log("A categoria foi cadastrada com sucesso!");
           refresh(0);
         })
         .catch(() =>
