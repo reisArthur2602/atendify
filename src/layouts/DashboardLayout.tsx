@@ -47,6 +47,12 @@ const handleChangeTitleDashboard = (path: string) => {
 };
 
 export const DashboardLayout = () => {
+  const { handleInitAuthUser, loading, handleLogout } = useAuth();
+
+  useEffect(() => {
+    (async () => await handleInitAuthUser())();
+  }, []);
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,10 +62,6 @@ export const DashboardLayout = () => {
   const handleNavigation = (path: string) => {
     navigate(path);
     if (mobileOpen) setMobileOpen(false);
-  };
-
-  const handleLogout = () => {
-    console.log("Logout realizado");
   };
 
   const drawerContent = (
@@ -92,7 +94,7 @@ export const DashboardLayout = () => {
       {/* Botão de Logout */}
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={handleLogout}>
+          <ListItemButton onClick={() => handleLogout()}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
@@ -102,12 +104,6 @@ export const DashboardLayout = () => {
       </List>
     </Box>
   );
-
-  const { handleInitAuthUser, loading } = useAuth();
-
-  useEffect(() => {
-    (async () => await handleInitAuthUser())();
-  }, []);
 
   if (loading) return <LinearProgress style={{ height: 10 }} />;
 

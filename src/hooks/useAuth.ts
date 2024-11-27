@@ -40,10 +40,16 @@ export const useAuth = () => {
         console.error("Acesso negado, verifique os dados e tente novamente")
       );
 
+  const handleLogout = async () => {
+    tokenUtils.destroy();
+    navigate(0);
+  };
+
   return {
     isLogged: !!currentUser,
     handleInitAuthUser,
     handleSignIn,
+    handleLogout,
     loading,
   };
 };
