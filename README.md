@@ -11,34 +11,24 @@
 </p>
 
 
+<h2 id="layout">🎨 Layout</h2>
+
+<p align="center">
+    <img src="./public/screens/login.png" alt="Tela de login" width="480px">
+    <!-- category screens -->
+    <img src="./public/screens/category.png" alt="Tela de categoria" width="480px">
+    <!-- customer screens -->
+    <img src="./public/screens/create-customer-form.png" alt="Tela de criar cliente" width="480px">
+    <!-- order screens -->
+    <img src="./public/screens/finish-order.png" alt="Tela de finalizar chamado " width="480px">
+
+</p>
+
 <h2 id="apresentation">🎥 Vídeo de apresentação</h2>
 
 https://github.com/user-attachments/assets/9fc6a0a1-d9bc-4ea7-8971-97d867c66224
 
 
-<h2 id="layout">🎨 Layout</h2>
-
-<p align="center">
-    <img src="./public/screens/login.png" alt="Tela de login" width="480px">
-    <img src="./public/screens/register.png" alt="Tela de cadastro" width="480px">
-    <!-- category screens -->
-    <img src="./public/screens/category.png" alt="Tela de categoria" width="480px">
-    <img src="./public/screens/create-category.png" alt="Tela de criar categoria" width="480px">
-    <img src="./public/screens/remove-category.png" alt="Tela de deletar categoria" width="480px">
-    <img src="./public/screens/details-category.png" alt="Tela de detalhes de uma categoria" width="480px">
-    <!-- customer screens -->
-    <img src="./public/screens/customer.png" alt="Tela de clientes" width="480px">
-    <img src="./public/screens/create-customer-form.png" alt="Tela de criar cliente" width="480px">
-    <img src="./public/screens/details-customer.png" alt="Tela de detalhes de uma categoria" width="480px">
-    <img src="./public/screens/delete-customer-form.png" alt="Tela de deletar cliente " width="480px">
-    <!-- order screens -->
-    <img src="./public/screens/order.png" alt="Tela de chamados" width="480px">
-    <img src="./public/screens/create-order-form.png" alt="Tela de criar chamado" width="480px">
-    <img src="./public/screens/details-order.png" alt="Tela de detalhes de um chamado" width="480px">
-    <img src="./public/screens/delete-order.png" alt="Tela de deletar chamado " width="480px">
-    <img src="./public/screens/finish-order.png" alt="Tela de finalizar chamado " width="480px">
-
-</p>
 
 <h2 id="technologies">💻 Tecnologias</h2>
 
@@ -56,9 +46,9 @@ https://github.com/user-attachments/assets/9fc6a0a1-d9bc-4ea7-8971-97d867c66224
 
 <h3>⚠️ Atenção</h3>
 
-Lembre-se o projeto Back-end deve estar sendo executado junto do Front-end, saiba mais como executar o projeto Back-end:
+Lembre-se o projeto back-end deve estar sendo executado junto do front-end, saiba como executar o projeto Back-end:
 
-```bash
+```http
 https://github.com/reisArthur2602/api-gestao-chamados
 ```
 
