@@ -3,7 +3,6 @@ import { Category, CategoryRequest } from "../../types/Category";
 import { CategorySchema } from "../../schemas/Dashboard";
 import { useForm } from "react-hook-form";
 import { CategoryServices } from "../../services/Category";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const UseCategory = () => {
@@ -18,7 +17,14 @@ export const UseCategory = () => {
     getCategories();
   }, []);
 
-  const refresh = useNavigate();
+  const handleDeleteCategory = async (id: string) =>
+    await CategoryServices.Delete(id)
+      .then(async () => await getCategories())
+      .catch(() =>
+        console.log(
+          "Erro ao deletar categoria, verifique o id e tente novamente"
+        )
+      );
 
   const {
     handleSubmit,
@@ -34,9 +40,9 @@ export const UseCategory = () => {
   const onSubmit = handleSubmit(
     async (data) =>
       await CategoryServices.Create(data)
-        .then(() => {
+        .then(async () => {
           console.log("A categoria foi cadastrada com sucesso!");
-          refresh(0);
+          await getCategories();
         })
         .catch(() =>
           console.error(
@@ -44,15 +50,6 @@ export const UseCategory = () => {
           )
         )
   );
-
-  const handleDeleteCategory = async (id: string) =>
-    await CategoryServices.Delete(id)
-      .then(() => refresh(0))
-      .catch(() =>
-        console.log(
-          "Erro ao deletar categoria, verifique o id e tente novamente"
-        )
-      );
 
   return {
     onSubmit,

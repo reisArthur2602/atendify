@@ -4,14 +4,7 @@ import { UseCategory } from "../../hooks/Dashboard/useCategory";
 import { DataTableCategory } from "../../components/Dashboard/Category/DataTableCategory";
 
 const Category = () => {
-  const {
-    categories,
-    control,
-    errors,
-    handleDeleteCategory,
-    isSubmitting,
-    onSubmit,
-  } = UseCategory();
+  const { categories, handleDeleteCategory, ...form } = UseCategory();
 
   return (
     <Box padding={4}>
@@ -25,12 +18,7 @@ const Category = () => {
           </Typography>
         </Box>
 
-        <FormDialogCategory
-          control={control}
-          errors={errors}
-          isSubmitting={isSubmitting}
-          onSubmit={onSubmit}
-        />
+        <FormDialogCategory {...form} />
       </Box>
       <DataTableCategory
         categories={categories}

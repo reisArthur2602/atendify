@@ -40,7 +40,7 @@ export const DataTableCategory = ({
           categories.map((category) => (
             <TableRow key={category.id}>
               <TableCell>{category.id}</TableCell>
-              <TableCell>{category.name}</TableCell>
+              <TableCell>{formatUtils.Capitalize(category.name)}</TableCell>
               <TableCell>
                 {formatUtils.DateToDDMMYYYY(new Date(category.created_at))}
               </TableCell>

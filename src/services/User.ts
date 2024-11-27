@@ -8,13 +8,21 @@ import {
 
 const userEndpoint = "/user";
 
-const SignIn = async (data: UserSignInRequest) =>
-  (await api.post<UserSignInResponse>(userEndpoint + "/session", data)).data;
+const SignIn = async (data: UserSignInRequest) => {
+  const session = (
+    await api.post<UserSignInResponse>(userEndpoint + "/session", data)
+  ).data;
+  return session;
+};
 
-const SignUp = async (data: UserSignUpRequest) =>
+const SignUp = async (data: UserSignUpRequest) => {
   await api.post(userEndpoint + "/register", data);
+};
 
-const Get = async () => (await api.get<User>(userEndpoint + "/me")).data;
+const Get = async () => {
+  const user = (await api.get<User>(userEndpoint + "/me")).data;
+  return user;
+};
 
 export const UserServices = {
   SignIn,
