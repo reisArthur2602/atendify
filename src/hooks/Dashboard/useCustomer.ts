@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { Customer, CustomerRequest } from "../../types/Customer";
 import { CustomerSchema } from "../../schemas/Dashboard";
 import { CustomerServices } from "../../services/Customer";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const UseCustomer = () => {
@@ -18,12 +17,11 @@ export const UseCustomer = () => {
     getCustomers();
   }, []);
 
-  const refresh = useNavigate();
-
   const {
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<CustomerRequest>({
     resolver: zodResolver(CustomerSchema),
     defaultValues: {
@@ -38,9 +36,10 @@ export const UseCustomer = () => {
   const onSubmit = handleSubmit(
     async (data) =>
       await CustomerServices.Create(data)
-        .then(() => {
+        .then(async () => {
           console.log("O cliente foi cadastrada com sucesso!");
-          refresh(0);
+          reset();
+          await getCustomers();
         })
         .catch(() =>
           console.error(
@@ -51,7 +50,7 @@ export const UseCustomer = () => {
 
   const handleDeleteCustomer = async (id: string) =>
     await CustomerServices.Delete(id)
-      .then(() => refresh(0))
+      .then(async () => await getCustomers())
       .catch(() =>
         console.log("Erro ao deletar cliente, verifique o id e tente novamente")
       );

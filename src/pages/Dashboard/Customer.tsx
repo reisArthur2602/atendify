@@ -4,14 +4,7 @@ import { UseCustomer } from "../../hooks/Dashboard/useCustomer";
 import { DataTableCustomer } from "../../components/Dashboard/Customer/DataTableCustomer";
 
 const Customer = () => {
-  const {
-    control,
-    errors,
-    isSubmitting,
-    onSubmit,
-    handleDeleteCustomer,
-    customers,
-  } = UseCustomer();
+  const { handleDeleteCustomer, customers, ...form } = UseCustomer();
   return (
     <Box padding={4}>
       <Box display={"flex"} justifyContent={"space-between"} marginBottom={6}>
@@ -24,12 +17,7 @@ const Customer = () => {
           </Typography>
         </Box>
 
-        <FormDialogCustomer
-          control={control}
-          errors={errors}
-          isSubmitting={isSubmitting}
-          onSubmit={onSubmit}
-        />
+        <FormDialogCustomer {...form} />
       </Box>
       <DataTableCustomer
         customers={customers}
