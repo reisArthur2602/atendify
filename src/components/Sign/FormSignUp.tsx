@@ -102,7 +102,7 @@ export const FormSignUp = ({
         <Typography component={"p"} variant="body2">
           Já possui uma conta?
         </Typography>
-        <Link href="/sign/in" variant="body2">
+        <Link href="/sign" variant="body2">
           Faça login
         </Link>
       </Box>
