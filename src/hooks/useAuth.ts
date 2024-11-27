@@ -30,9 +30,10 @@ export const useAuth = () => {
 
   const handleSignIn = async (data: UserSignInRequest) =>
     await UserServices.SignIn(data)
-      .then(({ user }) => {
+      .then(({ user, token }) => {
         updateUser(user);
-        console.log(`Olá ${user.username}, faça login!`);
+        tokenUtils.save(token);
+        console.log(`Olá ${user.username}, seja bem vindo!`);
         navigate("/dashboard", { replace: true });
       })
       .catch(() =>

@@ -27,7 +27,7 @@ export const useSignUp = () => {
       await UserServices.SignUp(data)
         .then(() => {
           console.log(`A conta foi criada com sucesso, faça login!`);
-          navigate("/sign/in", { replace: true });
+          navigate("/sign", { replace: true });
         })
         .catch(() => console.error("Acesso Negado"))
   );

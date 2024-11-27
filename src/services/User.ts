@@ -5,19 +5,12 @@ import {
   UserSignInResponse,
   UserSignUpRequest,
 } from "../types/User";
-import { tokenUtils } from "../utils/token";
 
 const userEndpoint = "/user";
 
-const SignIn = async (data: UserSignInRequest) => {
-  const response = await api.post<UserSignInResponse>(
-    userEndpoint + "/session",
-    data
-  );
-  const { token, user } = response.data;
-  tokenUtils.save(token);
-  return { user };
-};
+const SignIn = async (data: UserSignInRequest) =>
+  (await api.post<UserSignInResponse>(userEndpoint + "/session", data)).data;
+
 const SignUp = async (data: UserSignUpRequest) =>
   await api.post(userEndpoint + "/register", data);
 
