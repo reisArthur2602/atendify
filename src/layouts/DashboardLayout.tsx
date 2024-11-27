@@ -27,14 +27,14 @@ import { Logo } from "../components/Logo";
 const drawerWidth = 240;
 
 const menuItems = [
-  { text: "Chamados", icon: <PhoneIcon />, path: "/dashboard/order" },
+  { text: "Chamados", icon: <PhoneIcon />, path: "/dashboard" },
   { text: "Categorias", icon: <CategoryIcon />, path: "/dashboard/category" },
   { text: "Clientes", icon: <GroupIcon />, path: "/dashboard/customers" },
 ];
 
 const handleChangeTitleDashboard = (path: string) => {
   switch (path) {
-    case "/dashboard/order":
+    case "/dashboard":
       return "Chamados";
     case "/dashboard/category":
       return "Categorias";
@@ -173,6 +173,7 @@ export const DashboardLayout = () => {
         }}
       >
         <Toolbar />
+        {/* Rotas Dashboard */}
         <Outlet />
       </Box>
     </Box>

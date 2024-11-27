@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const useSignIn = () => {
   const { updateUser } = useAuth();
-  const refresh = useNavigate();
+  const redirect = useNavigate();
 
   const {
     handleSubmit,
@@ -28,7 +28,7 @@ export const useSignIn = () => {
         .then((result) => {
           updateUser(result!.user);
           console.log(`A conta foi criada com sucesso, faça login!`);
-          refresh(0);
+          redirect("dashboard", { replace: true });
         })
         .catch(() =>
           console.error(
