@@ -1,14 +1,14 @@
 import { Category } from "./Category";
+import { Customer } from "./Customer";
 
 export type Order = {
   id: string;
-  clientId: string;
-  userId: string;
-  description: string;
-  category: Category;
-  created_at: string;
   status: boolean;
-  user: { username: string };
+  description: string;
+  created_at: Date;
+  category: Category;
+  client: Customer;
+  user: { id: string; username: string };
 };
 
 export type OrderRequest = {

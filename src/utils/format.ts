@@ -14,7 +14,7 @@ const Phone = (celular: string): string => {
 const Status = (status: boolean) => {
   switch (status) {
     case true:
-      return "Finalizada";
+      return "Finalizado";
     case false:
       return "Em Aberto";
   }

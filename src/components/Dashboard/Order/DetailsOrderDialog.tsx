@@ -53,6 +53,7 @@ export const DetailsOrderDialog = ({
             Visualize todos os detalhes do chamado
           </DialogContentText>
 
+          {/* id */}
           <Box
             sx={{
               display: "flex",
@@ -70,6 +71,25 @@ export const DetailsOrderDialog = ({
             </Typography>
           </Box>
 
+          {/* status */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginBlock: 3,
+            }}
+          >
+            <Typography component={"p"} variant="body2">
+              Status:
+            </Typography>
+
+            <Typography component={"p"} variant="body2" color={grey[900]}>
+              {formatUtils.Status(order.status)}
+            </Typography>
+          </Box>
+
+          {/* customer */}
           <Box
             sx={{
               display: "flex",
@@ -83,10 +103,11 @@ export const DetailsOrderDialog = ({
             </Typography>
 
             <Typography component={"p"} variant="body2" color={grey[900]}>
-              {formatUtils.Capitalize(order.clientId)}
+              {formatUtils.Capitalize(order.client.name)}
             </Typography>
           </Box>
 
+          {/* category */}
           <Box
             sx={{
               display: "flex",
@@ -104,6 +125,7 @@ export const DetailsOrderDialog = ({
             </Typography>
           </Box>
 
+          {/* created_by */}
           <Box
             sx={{
               display: "flex",
@@ -120,6 +142,8 @@ export const DetailsOrderDialog = ({
               {formatUtils.Capitalize(order.user.username)}
             </Typography>
           </Box>
+
+          {/* created_at */}
           <Box
             sx={{
               display: "flex",
@@ -129,7 +153,7 @@ export const DetailsOrderDialog = ({
             }}
           >
             <Typography component={"p"} variant="body2">
-              Cadastro:
+              Aberto:
             </Typography>
 
             <Typography component={"p"} variant="body2" color={grey[900]}>
@@ -137,6 +161,7 @@ export const DetailsOrderDialog = ({
             </Typography>
           </Box>
 
+          {/* description */}
           <Box
             sx={{
               display: "flex",

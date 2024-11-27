@@ -43,7 +43,7 @@ export const DataTableOrder = ({
           orders.map((order) => (
             <TableRow key={order.id}>
               <TableCell>{order.id}</TableCell>
-              <TableCell>{order.clientId}</TableCell>
+              <TableCell>{formatUtils.Capitalize(order.client.name)}</TableCell>
               <TableCell>
                 {formatUtils.Capitalize(order.category.name)}
               </TableCell>
@@ -54,10 +54,7 @@ export const DataTableOrder = ({
               <TableCell>
                 <Box display={"flex"} gap={2}>
                   <DeleteOrderDialog onDelete={() => onDelete(order.id)} />
-                  <DetailsOrderDialog
-                    order={order}
-                    onFinish={onFinish}
-                  />
+                  <DetailsOrderDialog order={order} onFinish={onFinish} />
                 </Box>
               </TableCell>
             </TableRow>
