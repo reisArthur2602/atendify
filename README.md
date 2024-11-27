@@ -16,10 +16,21 @@
     <img src="./public/screens/login.png" alt="Tela de login" width="480px">
     <img src="./public/screens/register.png" alt="Tela de cadastro" width="480px">
     <!-- category screens -->
-    <img src="./public/screens/category.png" alt="Tela de cadastro" width="480px">
+    <img src="./public/screens/category.png" alt="Tela de categoria" width="480px">
     <img src="./public/screens/create-category.png" alt="Tela de criar categoria" width="480px">
     <img src="./public/screens/remove-category.png" alt="Tela de deletar categoria" width="480px">
     <img src="./public/screens/details-category.png" alt="Tela de detalhes de uma categoria" width="480px">
+    <!-- customer screens -->
+    <img src="./public/screens/customer.png" alt="Tela de clientes" width="480px">
+    <img src="./public/screens/create-customer-form.png" alt="Tela de criar cliente" width="480px">
+    <img src="./public/screens/details-customer.png" alt="Tela de detalhes de uma categoria" width="480px">
+    <img src="./public/screens/delete-customer-form.png" alt="Tela de deletar cliente " width="480px">
+    <!-- order screens -->
+    <img src="./public/screens/order.png" alt="Tela de chamados" width="480px">
+    <img src="./public/screens/create-order-form.png" alt="Tela de criar chamado" width="480px">
+    <img src="./public/screens/details-order.png" alt="Tela de detalhes de um chamado" width="480px">
+    <img src="./public/screens/delete-order.png" alt="Tela de deletar chamado " width="480px">
+    <img src="./public/screens/finish-order.png" alt="Tela de finalizar chamado " width="480px">
 
 </p>
 
