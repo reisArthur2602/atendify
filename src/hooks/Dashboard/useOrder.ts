@@ -1,16 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { useForm } from "react-hook-form";
-
 import { Order, OrderRequest } from "../../types/Order";
 import { OrderSchema } from "../../schemas/Dashboard";
 import { useEffect, useState } from "react";
 import { OrderServices } from "../../services/Order";
-import { useNavigate } from "react-router-dom";
 
 export const UseOrder = () => {
-  const refresh = useNavigate();
-
   const [orders, setOrders] = useState<Order[] | []>([]);
 
   const getOrders = async () => {
@@ -24,13 +19,14 @@ export const UseOrder = () => {
 
   const handleDeleteOrder = async (id: string) =>
     await OrderServices.Delete(id)
-      .then(() => refresh(0))
+      .then(async () => await getOrders())
       .catch(() =>
         console.log("Erro ao deletar chamado, verifique o id e tente novamente")
       );
+
   const handleFinishOrder = async (id: string) =>
     await OrderServices.Finish(id)
-      .then(() => refresh(0))
+      .then(async () => await getOrders())
       .catch(() =>
         console.log(
           "Erro ao finalizar chamado, verifique o id e tente novamente"
@@ -41,6 +37,7 @@ export const UseOrder = () => {
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<OrderRequest>({
     resolver: zodResolver(OrderSchema),
     defaultValues: {
@@ -53,9 +50,10 @@ export const UseOrder = () => {
   const onSubmit = handleSubmit(
     async (data) =>
       await OrderServices.Create(data)
-        .then(() => {
+        .then(async () => {
+          await getOrders();
+          reset();
           console.log("Chamado foi aberto com sucesso!");
-          refresh(0);
         })
         .catch(() =>
           console.error(

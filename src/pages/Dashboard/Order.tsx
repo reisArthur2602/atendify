@@ -16,6 +16,7 @@ const Order = () => {
   const [customers, setCustomers] = useState<Customer[] | []>([]);
 
   const getCategoriesAndCustomers = async () => {
+    
     const [categoryResponse, customerResponse] = await Promise.all([
       CategoryServices.Get(),
       CustomerServices.Get(),

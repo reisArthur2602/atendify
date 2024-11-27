@@ -42,7 +42,7 @@ export const DataTableCustomer = ({
           customers.map((customer) => (
             <TableRow key={customer.id}>
               <TableCell>{customer.id}</TableCell>
-              <TableCell>{customer.name}</TableCell>
+              <TableCell>{formatUtils.Capitalize(customer.name)}</TableCell>
               <TableCell>{customer.email}</TableCell>
               <TableCell>{customer.phone}</TableCell>
               <TableCell>
