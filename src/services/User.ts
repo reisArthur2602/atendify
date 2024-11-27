@@ -1,5 +1,6 @@
 import { api } from "../lib/Axios";
 import {
+  User,
   UserSignInRequest,
   UserSignInResponse,
   UserSignUpRequest,
@@ -20,7 +21,10 @@ const SignIn = async (data: UserSignInRequest) => {
 const SignUp = async (data: UserSignUpRequest) =>
   await api.post(userEndpoint + "/register", data);
 
+const Get = async () => (await api.get<User>(userEndpoint + "/me")).data;
+
 export const UserServices = {
   SignIn,
   SignUp,
+  Get,
 };

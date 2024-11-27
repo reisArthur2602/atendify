@@ -2,13 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignInSchema } from "../../schemas/Sign";
 import { UserSignInRequest } from "../../types/User";
-import { UserServices } from "../../services/User";
 import { useAuth } from "../useAuth";
-import { useNavigate } from "react-router-dom";
 
 export const useSignIn = () => {
-  const { updateUser } = useAuth();
-  const redirect = useNavigate();
+  const { handleSignIn } = useAuth();
 
   const {
     handleSubmit,
@@ -22,20 +19,7 @@ export const useSignIn = () => {
     },
   });
 
-  const onSubmit = handleSubmit(
-    async (data) =>
-      await UserServices.SignIn(data)
-        .then((result) => {
-          updateUser(result!.user);
-          console.log(`A conta foi criada com sucesso, faça login!`);
-          redirect("dashboard", { replace: true });
-        })
-        .catch(() =>
-          console.error(
-            "Não foi possível criar a conta, verifique os dados e tente novamente"
-          )
-        )
-  );
+  const onSubmit = handleSubmit(async (data) => await handleSignIn(data));
 
   return { onSubmit, control, errors, isSubmitting };
 };

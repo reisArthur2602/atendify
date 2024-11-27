@@ -13,6 +13,7 @@ import {
   ListItemText,
   Divider,
   IconButton,
+  LinearProgress,
 } from "@mui/material";
 
 import GroupIcon from "@mui/icons-material/Group";
@@ -21,8 +22,10 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "../components/Logo";
+import { AuthMiddleware } from "../middlewares/AuthMiddleware";
+import { useAuth } from "../hooks/useAuth";
 
 const drawerWidth = 240;
 
@@ -100,82 +103,92 @@ export const DashboardLayout = () => {
     </Box>
   );
 
+  const { handleInitAuthUser, loading } = useAuth();
+
+  useEffect(() => {
+    (async () => await handleInitAuthUser())();
+  }, []);
+
+  if (loading) return <LinearProgress style={{ height: 10 }} />;
+
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+    <AuthMiddleware>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
 
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {handleChangeTitleDashboard(pathname)}
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        <AppBar
+          position="fixed"
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+          }}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              {handleChangeTitleDashboard(pathname)}
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: "none", sm: "block" },
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        open
-      >
-        {drawerContent}
-      </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          open
+        >
+          {drawerContent}
+        </Drawer>
 
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-      >
-        <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
-          <IconButton onClick={handleDrawerToggle}>
-            <CloseIcon />
-          </IconButton>
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
+            <IconButton onClick={handleDrawerToggle}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          {drawerContent}
+        </Drawer>
+
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            marginLeft: { sm: `${drawerWidth}px`, xs: 0 },
+            minHeight: "100vh",
+          }}
+        >
+          <Toolbar />
+          {/* Rotas Dashboard */}
+          <Outlet />
         </Box>
-        {drawerContent}
-      </Drawer>
-
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          marginLeft: { sm: `${drawerWidth}px`, xs: 0 },
-          minHeight: "100vh",
-        }}
-      >
-        <Toolbar />
-        {/* Rotas Dashboard */}
-        <Outlet />
       </Box>
-    </Box>
+    </AuthMiddleware>
   );
 };
