@@ -5,6 +5,7 @@ import { UserSignInRequest } from "../types/User";
 import { tokenUtils } from "../utils/token";
 import { useState } from "react";
 import { api } from "../lib/Axios";
+import { toast } from "react-toastify";
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -33,11 +34,11 @@ export const useAuth = () => {
       .then(({ user, token }) => {
         updateUser(user);
         tokenUtils.save(token);
-        console.log(`Olá ${user.username}, seja bem vindo!`);
+        toast.success(`Olá ${user.username}, seja bem vindo!`);
         navigate("/dashboard", { replace: true });
       })
       .catch(() =>
-        console.error("Acesso negado, verifique os dados e tente novamente")
+        toast.error("Acesso negado, verifique os dados e tente novamente")
       );
 
   const handleLogout = async () => {

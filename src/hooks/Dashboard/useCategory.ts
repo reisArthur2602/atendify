@@ -4,6 +4,7 @@ import { CategorySchema } from "../../schemas/Dashboard";
 import { useForm } from "react-hook-form";
 import { CategoryServices } from "../../services/Category";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const UseCategory = () => {
   const [categories, setCategories] = useState<Category[] | []>([]);
@@ -21,7 +22,7 @@ export const UseCategory = () => {
     await CategoryServices.Delete(id)
       .then(async () => await getCategories())
       .catch(() =>
-        console.log(
+        toast.error(
           "Erro ao deletar categoria, verifique o id e tente novamente"
         )
       );
@@ -41,11 +42,11 @@ export const UseCategory = () => {
     async (data) =>
       await CategoryServices.Create(data)
         .then(async () => {
-          console.log("A categoria foi cadastrada com sucesso!");
+          toast.success("A categoria foi cadastrada com sucesso!");
           await getCategories();
         })
         .catch(() =>
-          console.error(
+          toast.error(
             "Não foi possível adicionar a categoria, verifique os dados e tente novamente"
           )
         )

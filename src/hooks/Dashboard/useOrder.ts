@@ -4,6 +4,7 @@ import { Order, OrderRequest } from "../../types/Order";
 import { OrderSchema } from "../../schemas/Dashboard";
 import { useEffect, useState } from "react";
 import { OrderServices } from "../../services/Order";
+import { toast } from "react-toastify";
 
 export const UseOrder = () => {
   const [orders, setOrders] = useState<Order[] | []>([]);
@@ -53,10 +54,10 @@ export const UseOrder = () => {
         .then(async () => {
           await getOrders();
           reset();
-          console.log("Chamado foi aberto com sucesso!");
+          toast.success("Chamado foi aberto com sucesso!");
         })
         .catch(() =>
-          console.error(
+          toast.error(
             "Não foi possível abrir o chamado, verifique os dados e tente novamente"
           )
         )

@@ -5,6 +5,7 @@ import { UserSignUpRequest } from "../../types/User";
 
 import { useNavigate } from "react-router-dom";
 import { UserServices } from "../../services/User";
+import { toast } from "react-toastify";
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -26,10 +27,14 @@ export const useSignUp = () => {
     async (data) =>
       await UserServices.SignUp(data)
         .then(() => {
-          console.log(`A conta foi criada com sucesso, faça login!`);
+          toast.success(`A conta foi criada com sucesso, faça login!`);
           navigate("/sign", { replace: true });
         })
-        .catch(() => console.error("Acesso Negado"))
+        .catch(() =>
+          toast.error(
+            "Erro ao cadastrar sua conta, verifique os dados e tente novamente"
+          )
+        )
   );
 
   return { onSubmit, control, errors, isSubmitting };
