@@ -10,6 +10,12 @@
     <b>Desenvolvimento de uma plataforma de gestão de chamados</b>
 </p>
 
+
+<h2 id="apresentation">🎥 Vídeo de apresentação</h2>
+
+https://github.com/user-attachments/assets/9fc6a0a1-d9bc-4ea7-8971-97d867c66224
+
+
 <h2 id="layout">🎨 Layout</h2>
 
 <p align="center">
